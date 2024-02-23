@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    scroll-behavior: smooth;
+  }
+
+  :root {
+    --azul: #16d6e5;
+    --azul2: #002b8b;
+    --azul3: #c7ede8;
+    --vermelho: #d80104;
+    --branco: #ffffff;
+  }
+
+  body {
+    background-color: var(--azul3);
+  }
+  
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  main h1 {
+    margin: 10px;
+    text-decoration: underline;
+  }
+
+  #cadastro {
+    font-size: large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35vw;
+    height: 50vh;
+    margin-top: 5px;
+    padding: 25px;
+    border: 3px var(--azul2) groove;
+    border-radius: 25px;
+    background-color: var(--azul);
+  }
+
+  #formCadastro div {
+    width: 25vw;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #formCadastro button {
+    padding: 8px;
+    margin: auto;
+  border: 3px var(--branco) inset;
+  border-radius: 15px;
+  }
+
+  #confirmacao {
+    margin: 10px;
+    width: 50vw;
+    height: 5vh;
+  }
+
+  #formConsulta {
+    display: flex;
+  }
+
+  #formConsulta div {
+    width: 25vw;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #formConsulta button {
+    padding: 8px;
+    margin: auto;
+    border: 3px var(--branco) inset;
+    border-radius: 15px;
+  }
+
+
+  #consulta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    width: 100vw;
+    height: 10vh;
+    margin-top: 5px;
+    padding: 25px;
+    border: 3px var(--azul2) groove;
+    border-radius: 15px;
+    background-color: var(--azul);
+  }
+
+  #divInformacoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100vw;
+    height: 10vh;
+    margin-top: 1px;
+    border: 3px var(--azul2) groove;  
+    border-radius: 15px;
+}
+
+#divInformacoes div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#divInformacoes div a {
+    margin: 10px;
+}
+
+  

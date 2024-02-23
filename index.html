@@ -1,39 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Cadastro</title>
 </head>
+
 <body>
     <main>
-        <div id="cadatro">
+        <h1>Cadastro de cliente</h1>
+        <div id="cadastro">
             <form id="formCadastro">
                 <div>
                     <label for="NomeDoCliente">Nome: </label>
-                    <input type="text" id="NomeDoCliente">
+                    <input required type="text" id="NomeDoCliente">
                 </div>
                 <div>
                     <label for="SobrenomeDoCliente">Sobrenome: </label>
-                    <input type="text" id="SobrenomeDoCliente">
+                    <input required type="text" id="SobrenomeDoCliente">
                 </div>
                 <div>
                     <label for="NumeroConta">Numero da conta: </label>
-                    <input type="text" id="NumeroConta">
+                    <input required type="text" id="NumeroConta">
                 </div>
                 <div>
                     <label for="DepositoInicial">Deposito inicial: </label>
-                    <input type="number" id="DepositoInicial">
+                    <input required type="number" id="DepositoInicial">
                 </div>
                 <div>
-                    <button id="BtnCadastrar">
-                    Cadastrar
-                    </button>
+                    <button>Cadastrar</button>
                 </div>
              </form>
+        </div>
+        <div>
+            <p id="confirmacao"></p>
+        </div>
+
+        <h1>Consulta cliente</h1>
+        <div>
+            <div id="consulta">
+                <form id="formConsulta">
+                    <div>
+                        <label for="cliente">Nome do cliente: </label>
+                        <input required type="text" id="consultaCliente">
+                    </div>
+                    <div>
+                        <label for="Conta">Número da conta: </label>
+                        <input required type="text" id="ConsultaConta">
+                    </div>
+                    <div>
+                        <button>Consultar</button>
+                    </div>
+                </form>
+            </div>
+            <div id="divInformacoes">
+                <div>
+                    <p>Nome completo: </p>
+                    <p id="nome"></p>
+                </div>
+                <div>
+                    <p>Saldo: </p>
+                    <p id="saldo"></p>
+                </div>
+                <div>
+                    <p>Situação: </p>
+                    <p id="situacao"></p>
+                </div>
+            </div>
         </div>
     </main>
 </body>
 </html>
+
