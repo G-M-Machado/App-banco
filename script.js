@@ -1,22 +1,12 @@
-class clientes {
-    #nome;
-    #sobrenome;
+class contas {
     #conta;
-    #saldo;
+    #saldo
+    #situacao;
 
-    constructor (nome, sobrenome, conta, saldo) {
-        this.#nome = nome;
-        this.#sobrenome = sobrenome;
+    constructor(conta, saldo, situacao){
         this.#conta = conta;
         this.#saldo = saldo;
-    }
-
-    get nome() {
-        return this.#nome;
-    }
-
-    get sobrenome() {
-        return this.#sobrenome
+        this.#situacao = situacao;
     }
 
     get conta() {
@@ -27,6 +17,10 @@ class clientes {
         return this.#saldo
     }
 
+    get situacao(){
+        return this.#situacao
+    }
+
     set saldo(saldo) {
         return this.#saldo = saldo;
     }
@@ -35,7 +29,7 @@ class clientes {
         if (valor > 0 && valor <= this.#saldo) {
             this.#saldo -= valor;
         } else {
-            //TODO (mensagem erro)
+            alert('saldo insuficiente')
         }
     }
 
@@ -43,41 +37,85 @@ class clientes {
         if (valor > 0) {
             this.#saldo += valor;
         } else {
-            //TODO (mensagem erro)
+            alert('Depósito deve conter algum valor')
         }
     }
 }
 
-document.querySelector('form').addEventListener('submit', function(event) {
+class clientes extends contas {
+    #nome;
+    #sobrenome;
+
+    constructor (nome, sobrenome, conta, saldo, situacao) {
+        super(conta, saldo, situacao);
+        this.#nome = nome;
+        this.#sobrenome = sobrenome;
+    }
+
+    get nome() {
+        return this.#nome;
+    }
+
+    get sobrenome() {
+        return this.#sobrenome
+    }
+
+
+}
+
+document.querySelector('#formCadastro').addEventListener('submit', function(event) {
     event.preventDefault();
     cadastroCliente();
     verificarClientes();
+    verificarConta()
+
+    document.querySelector('#NomeDoCliente').value = '';
+    document.querySelector('#SobrenomeDoCliente').value = '';
+    document.querySelector('#NumeroConta').value = '';
+    document.querySelector('#DepositoInicial').value = '';
 })
 
 let cliente = [];
+let numeroConta =[];
 
 function cadastroCliente() {
     let nome = document.querySelector('#NomeDoCliente').value;
     let sobrenome = document.querySelector('#SobrenomeDoCliente').value;
     let conta = document.querySelector('#NumeroConta').value;
-    let deposito = document.querySelector('#DepositoInicial').value;
+    let saldo = document.querySelector('#DepositoInicial').value;
     
-    for (i = 0; i < cliente.length; i++) {
-        if (cliente[i].conta == conta) {
-            console.log("Esta conta já existe");
-            return;
-        }
+    //for (i = 0; i < cliente.length; i++) {
+    //    if (cliente[i].conta == conta) {
+    //        console.log("Esta conta já existe");
+    //        return;
+    //    }
+    //}
+
+    if (cliente.some(c => c.conta == conta)) {
+        console.log("Esta conta já existe");
+        return;
     }
 
-    if (deposito < 50) {
+    if (saldo < 50) {
         console.log("Depósito mínimo para abertura de conta: R$50,00")
         return
     }
 
-    let Novocliente = new clientes(nome, sobrenome, conta, deposito);
+    let NovaConta = new contas(conta, saldo, situacao = true);
+    numeroConta.push(NovaConta);
+
+    let Novocliente = new clientes(nome, sobrenome, conta, saldo, situacao = true);
     cliente.push(Novocliente);
-    return cliente;
+
+    document.querySelector('#confirmacao').textContent = `Cadastro de ${Novocliente.nome}, conta número ${NovaConta.conta} realizado com sucesso!`
+    setTimeout(function(){
+        document.querySelector("#confirmacao").textContent = '';
+    }, 5000);
+
+
+    return cliente, numeroConta;
 }
+
 
 function verificarClientes() {
     for (i = 0; i < cliente.length; i++) {
@@ -85,3 +123,37 @@ function verificarClientes() {
     }
 }
 
+function verificarConta() {
+    for (i = 0; i < numeroConta.length; i++) {
+        console.log(numeroConta[i]);
+    }
+}
+
+
+
+
+// pesquisa cliente
+
+document.querySelector('#formConsulta').addEventListener('submit', function(event) {
+    event.preventDefault();
+    atualizarDados();
+
+    document.querySelector('#consultaCliente').value = '';
+    document.querySelector('#ConsultaConta').value = '';
+})
+
+
+function atualizarDados() {
+    let nomeCliente = document.querySelector("#consultaCliente").value;
+    let numeroConta = document.querySelector("#ConsultaConta").value;
+
+    let clienteEncontrado = cliente.find(c => c.nome === nomeCliente && c.conta === numeroConta);
+
+    if (clienteEncontrado) {
+        document.querySelector('#nome').textContent = clienteEncontrado.nome + ' ' + clienteEncontrado.sobrenome;
+        document.querySelector('#saldo').textContent = clienteEncontrado.saldo;
+        document.querySelector('#situacao').textContent = clienteEncontrado.situacao ? 'Ativa' : 'Inativa';
+    } else {
+        console.log('Cliente não encontrado');
+    }
+}
